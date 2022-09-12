@@ -1,26 +1,6 @@
 # Mood tracker API
 > REST API built with django and django rest framework.
 
-## Installation
-1. **Clone the repo**
-```
-git clone https://github.com/stealacamera/mood-tracker-api.git
-```
-2. **Create and activate a virtual environment**
-```
-virtualenv <venv name>
-<venv name>/Scripts/activate
-```
-3. **Install the dependencies**
-```
-pip install -r requirements.txt
-```
-4. **Run migrations and server**
-```
-python manage.py migrate
-python manage.py runserver
-```
-
 ## API endpoints
 - **POST** Register: `http://localhost:5000/account/register`  
 *Registers a user.*  
@@ -115,6 +95,26 @@ Only accessable by admins.*
         "avg_mood": <average mood of that year>
     }
 ]
+```
+
+## Installation
+1. **Clone the repo**
+```
+git clone https://github.com/stealacamera/mood-tracker-api.git
+```
+2. **Create and activate a virtual environment**
+```
+virtualenv <venv name>
+<venv name>/Scripts/activate
+```
+3. **Install the dependencies**
+```
+pip install -r requirements.txt
+```
+4. **Run migrations and server**
+```
+python manage.py migrate
+python manage.py runserver
 ```
 
 [^1]: 'By myself' (default), 'With acquaintances', 'With friends', 'With family', 'With partner'
