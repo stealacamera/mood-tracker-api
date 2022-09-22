@@ -36,10 +36,10 @@ class MoodEntryDisplay(viewsets.ModelViewSet):
         user_profile = Profile.objects.get(user=self.request.user)
         yesterday_date = date.today() - timedelta(days=1)
         
-        if user_entries.filter(created_on=yesterday_date).exists() or user_entries.count() == 0:
-            user_profile.current_streak += 1
-        elif user_entries.filter(created_on=date.today()).exists():
+        if user_entries.filter(created_on=date.today()).exists():
             pass
+        elif user_entries.filter(created_on=yesterday_date).exists() or user_entries.count() == 0:
+            user_profile.current_streak += 1
         else:
             user_profile.current_streak = 0
         
