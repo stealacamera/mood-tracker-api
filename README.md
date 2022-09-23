@@ -1,9 +1,30 @@
 # Mood tracker API
-> REST API built with django and django rest framework.
+> REST API to store and keep track of mood records, yearly summaries (total no. of entries, average mood), and user recording streaks.
 
 ## API endpoints
-- **POST** Register: `http://localhost:5000/account/register`  
-*Registers a user.*  
+<sub>*Methods in bold are only accessable by admins.*</sub>
+
+### User endpoints
+`http://localhost:5000/account/`
+| Endpoint | HTTP methods | Description |
+| --- | --- | --- |
+| `register/` | `POST` | 
+| `login/` | `POST` |
+| `login/refresh/` | `POST` |
+| `profile/` | `GET` | Gets profile of logged in user |
+| `user-profiles/` | **`GET`** | Get all existing profiles |
+| `user-profiles/<int:pk>/` | **`GET`** |
+
+### Mood tracker endpoints
+`http://localhost:5000/`
+| Endpoint | HTTP methods | Description |
+| --- | --- | --- |
+| ` ` | `GET` `POST` | Create a mood entry |
+| `<int:pk>/` | `GET` `PUT` `PATCH` `DELETE` |
+| `summary/annual/` | `GET` | Gets a summary report of each year for logged in user |
+
+## Usage examples
+- `POST` `http://localhost:5000/account/register`  
 ```
 HEADER
 {
@@ -12,7 +33,8 @@ HEADER
     "password": "examplepass",
     "password2": "examplepass"
 }
-
+```
+```
 OUTPUT
 {
     "username": "Example",
@@ -23,15 +45,15 @@ OUTPUT
 }
 ```
 
-- **POST** Login: `http://localhost:5000/account/login/`  
-*Logs in a user.*  
+- `POST` `http://localhost:5000/account/login/`
 ```
 HEADER
 {
     "username": "Example",
     "password": "examplepass"
 }
-
+```
+```
 OUTPUT
 {
     "refresh": <refresh token>,
@@ -39,17 +61,7 @@ OUTPUT
 }
 ```
 
-- **POST** Login refresh: `http://localhost:5000/account/login/refresh/`  
-*Returns a new access token for the logged in user.*  
-```
-{
-    "refresh": <refresh token>,
-    "access": <access token>
-}
-```
-
-- **GET** Profile: `http://localhost:5000/account/profile/`  
-*Returns user's profile.*
+- `GET` `http://localhost:5000/account/profile/`
 ```
 {
     "id": <user id>,
@@ -62,15 +74,7 @@ OUTPUT
 }
 ```
 
-- **GET** User profiles: `http://localhost:5000/account/user-profiles/` `http://localhost:5000/account/user-profiles/<id>`  
-*Returns all/specified registered users' profiles.  
-Only accessable by admins.*
-
-- **GET** Mood entry: `http://localhost:5000/`  
-*Returns all entries made by user.*
-
-- **POST** Mood entry: `http://localhost:5000/`  
-*Submits a new entry.*  
+- `POST` `http://localhost:5000/`
 ```
 {
     "mood": <PositiveIntegerField 1-5 required>,
@@ -80,13 +84,10 @@ Only accessable by admins.*
     "date": <DateField (default: today's date)>
 }
 ```
-`social_situation choices`[^1]  
-`activity choices`[^2]
+<sub>`social_situation choices`</sub>[^1]  
+<sub>`activity choices`</sub>[^2] 
 
-- **GET PUT PATCH DELETE** Mood entry: `http://localhost:5000/<id>`  
-
-- **GET** Entry summaries: `http://localhost:5000/summary/annual`  
-*Returns a summary report of each year.*
+- `GET` `http://localhost:5000/summary/annual`
 ```
 [
     {
