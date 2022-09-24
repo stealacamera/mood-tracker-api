@@ -106,7 +106,7 @@ git clone https://github.com/stealacamera/mood-tracker-api.git
 2. **Create and activate a virtual environment**
 ```
 virtualenv <venv name>
-<venv name>/Scripts/activate
+<venv name>\Scripts\activate
 ```
 3. **Install the dependencies**
 ```
